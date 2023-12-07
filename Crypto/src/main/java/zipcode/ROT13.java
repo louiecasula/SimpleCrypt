@@ -19,11 +19,11 @@ public class ROT13  {
 
 
     public String crypt(String text) throws UnsupportedOperationException {
-
-        return "";
+        return rotate(text, 'm');
     }
 
     public String encrypt(String text) {
+//        return rotate(text, );
         return text;
     }
 
@@ -36,15 +36,21 @@ public class ROT13  {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < s.length(); i++){
             char current;
-            if(s.charAt(i) + rotateBy > 90){
+            if(!Character.isLetter(s.charAt(i))){
+                current = s.charAt(i);
+            }
+            else if((s.charAt(i) <= 90 && s.charAt(i) + rotateBy > 90) ||
+            s.charAt(i) <= 122 && s.charAt(i) + rotateBy > 122){
                 current = (char) ((s.charAt(i) + rotateBy) - 26);
+            }
+            else if(s.charAt(i) >= c){
+                current = (char) (s.charAt(i) - rotateBy);
             }
             else {
                 current = (char) (s.charAt(i) + rotateBy);
             }
             sb.append(current);
         }
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
