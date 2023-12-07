@@ -6,7 +6,12 @@ import static java.lang.Character.toLowerCase;
 
 public class ROT13  {
 
+    Character cs;
+    Character cf;
+
     ROT13(Character cs, Character cf) {
+        this.cs = cs;
+        this.cf = cf;
     }
 
     ROT13() {
@@ -27,8 +32,20 @@ public class ROT13  {
     }
 
     public static String rotate(String s, Character c) {
-
-        return "";
+        int rotateBy = c - s.charAt(0);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            char current;
+            if(s.charAt(i) + rotateBy > 90){
+                current = (char) ((s.charAt(i) + rotateBy) - 26);
+            }
+            else {
+                current = (char) (s.charAt(i) + rotateBy);
+            }
+            sb.append(current);
+        }
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
 }
